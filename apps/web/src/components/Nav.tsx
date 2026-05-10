@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Btn } from './Btn';
+import { GithubIcon } from './GithubIcon';
 
 export function Nav() {
   return (
@@ -14,7 +15,7 @@ export function Nav() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '0 20px',
+      padding: '0 12px 0 20px',
       background: 'var(--nav-bg)',
       backdropFilter: 'var(--glass-blur-nav)',
       border: '1px solid var(--glass-border)',
@@ -22,25 +23,18 @@ export function Nav() {
       borderRadius: '14px',
       zIndex: 1000,
     }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-        <div style={{
-          width: '24px',
-          height: '24px',
-          background: 'var(--o-fg)',
-          borderRadius: '4px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '14px',
-          fontWeight: 900,
-          color: 'var(--o-bg)',
-        }}>A</div>
-        <span style={{ fontSize: '16px', fontWeight: 600, letterSpacing: '-0.02em' }}>asciigen</span>
-      </div>
+      <span style={{ fontSize: '18px', fontWeight: 600, letterSpacing: '-0.02em' }}>asciigen</span>
 
-      <div style={{ display: 'flex', gap: '8px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <Btn
+          href="https://github.com/samhcharles/asciigen"
+          style={{ padding: '8px' }}
+          ariaLabel="Source"
+        >
+          <GithubIcon size={16} />
+        </Btn>
         <Btn glint="prism" filled href="/studio">
-          Generate your own
+          Studio
         </Btn>
       </div>
     </nav>

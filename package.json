@@ -7,8 +7,9 @@
   ],
   "scripts": {
     "dev": "npm run dev --workspaces --if-present",
-    "build": "npm run build --workspaces --if-present",
-    "lint": "npm run lint --workspaces --if-present"
+    "build": "npm run build --workspace @asciigen/engine && npm run build --workspace @asciigen/cli && npm run build --workspace web",
+    "lint": "npm run lint --workspace web",
+    "test": "npm run build --workspace @asciigen/engine && npm run test --workspace @asciigen/engine"
   },
   "devDependencies": {
     "@types/node": "^25.6.2",

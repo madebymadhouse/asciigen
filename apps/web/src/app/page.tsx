@@ -1,85 +1,57 @@
 'use client';
 
-import { Nav } from "@/components/Nav";
-import { Btn } from "@/components/Btn";
-import { AsciiPreview } from "@/components/AsciiPreview";
+import { AsciiScene, type ArtworkKind } from '@/components/AsciiScene';
+import { Nav } from '@/components/Nav';
 
-const LIBRARY_ITEMS = [
-  { title: "Urchin Symbiote", type: "urchin", glint: "prism", desc: "The official Orinadus substrate visual." },
-  { title: "Flowing Sphere", type: "sphere", glint: "cloud", desc: "Gentle organic breathing in ASCII." },
-  { title: "Monolithic Box", type: "box", glint: "lava", desc: "Hard edges, soft rendering." },
-  { title: "Zenith Torus", type: "torus", glint: "prism", desc: "Mathematical perfection in text." },
-  { title: "Substrate Pulse", type: "urchin", glint: "cloud", desc: "High-frequency spike oscillation." },
-  { title: "Boundless Spikes", type: "urchin", glint: "lava", desc: "Extreme geometric projection." },
+const LIBRARY: Array<{
+  title: string;
+  type: string;
+  kind: ArtworkKind;
+  resolution: number;
+  characters: string;
+  color?: boolean;
+  scale?: number;
+  cameraZ?: number;
+}> = [
+  { title: 'Urchin', type: '3D', kind: 'urchin', resolution: 0.32, characters: ' .:-=+*#%@', scale: 0.72, cameraZ: 8.4 },
+  { title: 'Knot', type: '3D', kind: 'knot', resolution: 0.34, characters: ' .,:;irsXA253hMHGS#9B&@', scale: 0.78, cameraZ: 8.2 },
+  { title: 'Torus', type: 'Interactive', kind: 'torus', resolution: 0.31, characters: '  `.-:+*=%@', scale: 0.78, cameraZ: 8.0 },
+  { title: 'Sphere', type: 'Image', kind: 'sphere', resolution: 0.33, characters: ' .oO0@', color: true, scale: 0.76, cameraZ: 8.0 },
+  { title: 'Box', type: 'Text', kind: 'box', resolution: 0.34, characters: ' .[]#', scale: 0.72, cameraZ: 8.6 },
+  { title: 'Shell', type: 'Video', kind: 'urchin', resolution: 0.36, characters: ' .:-+*#%@', scale: 0.6, cameraZ: 9.2 },
+  { title: 'Cone', type: '3D', kind: 'cone', resolution: 0.32, characters: ' .-+x#@', scale: 0.72, cameraZ: 8.0 },
+  { title: 'Capsule', type: '3D', kind: 'capsule', resolution: 0.34, characters: ' .:coO8@', scale: 0.72, cameraZ: 8.4 },
+  { title: 'Dodeca', type: '3D', kind: 'dodeca', resolution: 0.33, characters: ' .,:;+=xX$@', scale: 0.78, cameraZ: 8.2 },
+  { title: 'Octa', type: '3D', kind: 'octa', resolution: 0.34, characters: ' .`^"*#@', scale: 0.76, cameraZ: 8.4 },
+  { title: 'Grid', type: 'Interactive', kind: 'grid', resolution: 0.35, characters: ' .:-=+*#%@', scale: 0.82, cameraZ: 8.4 },
+  { title: 'Mono', type: 'Text', kind: 'torus', resolution: 0.38, characters: ' 01', scale: 0.72, cameraZ: 8.8 },
 ];
 
 export default function Home() {
   return (
-    <main style={{ minHeight: '100vh', padding: '120px 24px 60px', background: 'var(--o-bg)' }}>
+    <main className="page-shell">
       <Nav />
-      
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', 
-          gap: '32px' 
-        }}>
-          {LIBRARY_ITEMS.map((item, i) => (
-            <div key={i} style={{
-              height: '340px',
-              background: 'var(--glass-bg)',
-              border: '1px solid var(--glass-border)',
-              borderRadius: 'var(--radius-panel)',
-              display: 'flex',
-              flexDirection: 'column',
-              transition: 'all var(--dur-med) var(--ease-quart)',
-              cursor: 'pointer',
-              overflow: 'hidden',
-              position: 'relative'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'var(--glass-border-strong)';
-              e.currentTarget.style.background = 'var(--glass-bg-strong)';
-              e.currentTarget.style.transform = 'translateY(-4px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'var(--glass-border)';
-              e.currentTarget.style.background = 'var(--glass-bg)';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
-            >
-              <div style={{ flex: 1, pointerEvents: 'none' }}>
-                <AsciiPreview type={item.type} resolution={0.12} />
-              </div>
-              
-              <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'flex-end',
-                padding: '24px',
-                background: 'linear-gradient(to top, rgba(5,5,7,1), rgba(5,5,7,0))',
-                marginTop: '-80px',
-                zIndex: 2
-              }}>
-                <div>
-                  <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
-                    {item.type}
-                  </div>
-                  <div style={{ fontSize: '20px', fontWeight: 500, color: 'var(--text-primary)', marginBottom: '4px' }}>
-                    {item.title}
-                  </div>
-                  <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
-                    {item.desc}
-                  </div>
-                </div>
-                <Btn size="sm" glint={item.glint as any} style={{ padding: '6px 12px', fontSize: '12px' }}>
-                  Copy Code
-                </Btn>
-              </div>
+
+      <section className="library-grid" aria-label="Library">
+        {LIBRARY.map((item) => (
+          <article className="library-card" key={item.title}>
+            <div className="card-preview">
+              <AsciiScene
+                kind={item.kind}
+                characters={item.characters}
+                resolution={item.resolution}
+                color={item.color}
+                scale={item.scale}
+                cameraZ={item.cameraZ}
+              />
             </div>
-          ))}
-        </div>
-      </div>
+            <div className="card-meta">
+              <span>{item.title}</span>
+              <a href={`/studio?kind=${item.kind}`}>{item.type}</a>
+            </div>
+          </article>
+        ))}
+      </section>
     </main>
   );
 }

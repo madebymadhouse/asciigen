@@ -10,6 +10,7 @@ interface BtnProps {
   filled?: boolean;
   className?: string;
   style?: React.CSSProperties;
+  ariaLabel?: string;
 }
 
 export function Btn({
@@ -20,6 +21,7 @@ export function Btn({
   filled,
   className = '',
   style,
+  ariaLabel,
 }: BtnProps) {
   const baseClass = `btn ${glint ? `btn-glint btn-glint--${glint}` : ''} ${className}`;
   
@@ -64,6 +66,7 @@ export function Btn({
         href={href} 
         className={baseClass} 
         style={styles}
+        aria-label={ariaLabel}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -77,6 +80,7 @@ export function Btn({
       className={baseClass} 
       style={styles} 
       onClick={onClick}
+      aria-label={ariaLabel}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

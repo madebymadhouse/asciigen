@@ -1,35 +1,27 @@
 # Asciigen
 
-A top-tier platform for generating animated ASCII backgrounds, following Orinadus design principles.
+Minimal ASCII generation for CLI and web.
 
-## Features
-- **Library**: A curated collection of high-performance ASCII animations.
-- **Studio**: Drag-and-drop assets (Images/Video/3D) to generate custom backgrounds.
-- **AI Generator**: Describe your animation in plain language to generate configurations.
-- **Engine**: Powered by `chenglou/pretext` for 60fps text reflow.
-- **CLI**: Batch process images directly from your terminal.
+## Workspaces
 
-## Structure
-- `apps/web`: Next.js frontend (Orinadus design tokens, Inter font).
-- `packages/engine`: Core ASCII/Reflow logic.
-- `packages/cli`: Terminal interface for the engine.
+- `packages/engine` - shared conversion primitives
+- `packages/cli` - terminal commands
+- `apps/web` - library and studio
 
-## Getting Started
+## Commands
 
-### Development
 ```bash
 npm install
-npm run dev
-```
-
-### CLI Usage
-```bash
-cd packages/cli
 npm run build
-node dist/index.js convert path/to/image.png --width 100
+npm run lint
 ```
 
-## Design Principles
-- **No Marketing**: Straight utility.
-- **Orinadus Aesthetic**: Dark mode (#050507), Glassmorphism, holographic glints.
-- **High Performance**: Optimized for 60fps animations.
+## CLI
+
+```bash
+npm run build --workspace @asciigen/engine
+npm run build --workspace @asciigen/cli
+node packages/cli/dist/index.js image ./input.png --width 120
+node packages/cli/dist/index.js image ./input.png --width 120 --out output.txt
+node packages/cli/dist/index.js video ./input.mp4 --fps 8 --out-dir frames
+```

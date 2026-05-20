@@ -1,4 +1,8 @@
-# Asciigen
+![Ascii Gen banner](assets/banner.svg)
+
+<a href="#get-started"><img src="assets/buttons/btn-get-started.svg" alt="Get Started" /></a>&nbsp;<a href="#commands"><img src="assets/buttons/btn-commands.svg" alt="Commands" /></a>&nbsp;<a href="#cli"><img src="assets/buttons/btn-cli.svg" alt="CLI" /></a>
+
+---
 
 Minimal ASCII generation for CLI and web.
 

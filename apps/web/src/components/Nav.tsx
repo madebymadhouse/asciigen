@@ -27,7 +27,7 @@ export function Nav() {
 
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         <Btn
-          href="https://github.com/samhcharles/asciigen"
+          href="https://github.com/samhcus/asciigen"
           style={{ padding: '8px' }}
           ariaLabel="Source"
         >
